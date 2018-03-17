@@ -1,0 +1,30 @@
++++ wine/drive_c/Python36/Lib/distutils/cygwinccompiler.py
++++ wine/drive_c/Python36/Lib/distutils/cygwinccompiler.py
+@@ -144,17 +144,6 @@
+                              linker_so=('%s -mcygwin %s' %
+                                         (self.linker_dll, shared_option)))
+ 
+-        # cygwin and mingw32 need different sets of libraries
+-        if self.gcc_version == "2.91.57":
+-            # cygwin shouldn't need msvcrt, but without the dlls will crash
+-            # (gcc version 2.91.57) -- perhaps something about initialization
+-            self.dll_libraries=["msvcrt"]
+-            self.warn(
+-                "Consider upgrading to a newer version of gcc")
+-        else:
+-            # Include the appropriate MSVC runtime library if Python was built
+-            # with MSVC 7.0 or later.
+-            self.dll_libraries = get_msvcr()
+ 
+     def _compile(self, obj, src, ext, cc_args, extra_postargs, pp_opts):
+         """Compiles the source by spawning GCC and windres if needed."""
+@@ -313,9 +302,6 @@
+         # no additional libraries needed
+         self.dll_libraries=[]
+ 
+-        # Include the appropriate MSVC runtime library if Python was built
+-        # with MSVC 7.0 or later.
+-        self.dll_libraries = get_msvcr()
+ 
+ # Because these compilers aren't configured in Python's pyconfig.h file by
+ # default, we should at least warn the user if he is using an unmodified
