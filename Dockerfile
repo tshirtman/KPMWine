@@ -2,7 +2,6 @@ FROM cdrx/pyinstaller-windows:python3
 
 VOLUME /pipcache
 VOLUME /app
-EXPOSE 5900
 
 RUN apt-get update; apt-get install xvfb make patch git p7zip -y
 RUN yes|adduser pyinstaller --disabled-password --quiet; chown -R pyinstaller: /wine ; chown -R pyinstaller: /pipcache
