@@ -24,7 +24,16 @@ commandline.
 
 Example usage:
 
-         docker run -it --rm -v $PWD:/app builder-win-mingw make -f packaging/Makefile
+         docker run --rm -v $PWD:/app tshirtman/kpmwine make
+
+you can create a volume for the pip cache to save time on subsequent builds.
+
+         mkdir /tmp/pipcache
+         chmod a+w /tmp/pipcache
+         docker run --rm -v $PWD:/app -v /tmp/pipcache:"/wine/drive_c/users/pyinstaller/Local Settings/application data/pip/cache/" tshirtman/kpmwine make
+         
+         
+The pyinstaller output should be in `dist/`
 
 This image is based on the cdrx/pyinstaller-windows:python3 which made it
 possible at all.
