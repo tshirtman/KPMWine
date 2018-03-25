@@ -55,6 +55,8 @@ RUN cd /tmp \
  && wget https://gstreamer.freedesktop.org/data/pkg/windows/1.14.0.1/gstreamer-1.0-devel-x86_64-1.14.0.1.msi
 RUN xvfb-run wine msiexec /q /i /tmp/gstreamer-1.0-devel-x86_64-1.14.0.1.msi
 
+RUN rm -rf /tmp/SDL2* /tmp/gstreamer*
+
 WORKDIR /app
 
 ENTRYPOINT ["/entrypoint.sh"]
