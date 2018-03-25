@@ -34,7 +34,14 @@ You can create a volume for the pip cache to save time on subsequent builds.
 
 The PyInstaller output should be in `dist/`
 
-Pkg-config-lite is shipped, although I'm not yet entirely clear about how to use it.
+Pkg-config-lite is shipped, and sdl2{,-image,-mixer,-ttf} and gstreamer are
+installed and configured, which is makes it really easy to build a kivy wheel
+from it.
+
+         docker run --rm -v /path/to/kivy:/app -v /tmp/pipcache:/pipcache tshirtman/kpmwine bash
+         pip install --upgrade setuptools Cython==0.26 wheel kivy.deps.glew
+         export KIVY_USE_SETUPTOOLS=1
+         python setup.py bdist_wheel
 
 This image is based on the cdrx/pyinstaller-windows:python3 which made it
 possible at all.
